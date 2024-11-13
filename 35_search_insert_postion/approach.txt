@@ -1,0 +1,47 @@
+Approach
+The description says "Given a sorted array of distinct integers and ..." and "You must write an algorithm with O(logn) runtime complexity".
+
+So we should solve this question with binary search.
+
+There are two cases that we should focus on. One is we have the target in the array and the other is we don't have the target in the array.
+
+Input: nums = [1,3,5,6], target = 5
+First of all, let's see we have the target in the array. Actually this is just typical binary search.
+
+⭐️ Points
+
+middle pointer = (left index + right index) // 2
+[1,3,5,6]
+ L M   R  
+Now middle number(= M) is less than the target(= 5), so move left pointer(= L) to M + 1.
+
+[1,3,5,6]
+     L R
+     M
+Now middle pointer is at index 2. middle number is equal to the target.
+
+return 2 (= middle index)
+That is typical case.
+
+Let's look at the case where the target number is not present.
+
+Input: nums = [1,3,5,6], target = 2
+[1,3,5,6]
+ L M   R
+Now middle number is greater than the target, so move R to M - 1.
+
+[1,3,5,6]
+ L
+ R
+ M
+Now middle number is less than the target, so move L to M + 1.
+
+[1,3,5,6]
+ R L
+Now L is greater than R. We stop binary search. As a result, we don't find the target.
+
+The description says "return the index where it would be if it were inserted in order."
+
+In this case, we should insert the target into index 1. As you see, L is now at index 1, so
+
+return 1 (= left index)
